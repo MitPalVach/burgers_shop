@@ -8,7 +8,6 @@ const BurgerBlock = ({name, price, imageUrl, types, sizes}) => {
     const [activeType, setActiveType] = useState(types[0])
     const [activeSize, setActiveSize] = useState(sizes[0])
 
-
     const onSelectType = (index) => {
         setActiveType(index)
     }

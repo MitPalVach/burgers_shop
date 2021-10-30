@@ -1,14 +1,18 @@
-import {combineReducers, createStore} from "redux";
+import {combineReducers, createStore, compose, applyMiddleware} from "redux";
 import filtersReducer from "./reducers/filtersReducer";
 import burgersReducer from "./reducers/burgersReducer";
+import thunk from "redux-thunk";
 
 
 export const RootReducer = combineReducers({
-    filers: filtersReducer,
+    filters: filtersReducer,
     burgers: burgersReducer,
     // cart: cartReducer,
 })
-const store = createStore(RootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+
+const store = createStore(RootReducer, composeEnhancers(applyMiddleware(thunk)))
 export default store
 window.store = store
 

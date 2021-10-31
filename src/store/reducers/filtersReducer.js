@@ -1,6 +1,9 @@
 const initialState = {
     category: null,
-    sortBy: 'popular',
+    sortBy: {
+        type: 'popular',
+        order: 'desc',
+    },
 }
 
 
@@ -17,8 +20,9 @@ const filtersReducer = (state = initialState, action) => {
                 ...state,
                 category: action.payload,
             }
+        default:
+            return state
     }
-    return state
 }
 
 export default filtersReducer

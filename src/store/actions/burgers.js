@@ -6,10 +6,10 @@ export const setLoaded = (payload) => ({
     payload,
 })
 
-
-export const fetchBurgers = () => (dispatch) => {
+export const fetchBurgers = (sortBy, category) => (dispatch) => {
     dispatch(setLoaded(false))
-    axios.get('http://localhost:3001/burgers')
+    axios.get(`http://localhost:3001/burgers?${category !== null ? `category=${category}` : ''
+    }&_sort=${sortBy.type}&_order=${sortBy.order}`)
         .then(({data}) => {
             dispatch(setBurgers(data))
         })

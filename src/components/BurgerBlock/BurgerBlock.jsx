@@ -1,13 +1,23 @@
 import React, {useState} from 'react';
 import cn from 'classnames';
+import Button from "../Button/Button";
 
 
-const BurgerBlock = ({name, price, imageUrl, types, sizes}) => {
+const BurgerBlock = ({id, name, price, imageUrl, types, sizes, onClickAddBurger, addedCount}) => {
     const availableTypes = ['традиционный', 'острый']
     const availableSizes = ['mini', 'medium', 'KING size']
     const [activeType, setActiveType] = useState(types[0])
-    const [activeSize, setActiveSize] = useState(sizes[0])
+    const [activeSize, setActiveSize] = useState(1)
 
+    const onAddBurger = () => {
+        const obj = {
+            id, name, imageUrl, price,
+            size: availableSizes[activeSize],
+            type: availableTypes[activeType],
+        }
+        onClickAddBurger(obj)
+    }
+    // Type
     const onSelectType = (index) => {
         setActiveType(index)
     }
@@ -19,6 +29,7 @@ const BurgerBlock = ({name, price, imageUrl, types, sizes}) => {
                 disabled: !types.includes(index),
             })}
         >{type}</li>)
+    // Size
     const onSelectSize = (index) => {
         setActiveSize(index)
     }
@@ -49,7 +60,8 @@ const BurgerBlock = ({name, price, imageUrl, types, sizes}) => {
             </div>
             <div className="burger-block__bottom">
                 <div className="burger-block__price">от {price} ₽</div>
-                <div className="button button--outline button--add">
+                <Button onClick={onAddBurger}
+                        className="button button--outline button--add">
                     <svg
                         width="12"
                         height="12"
@@ -63,8 +75,8 @@ const BurgerBlock = ({name, price, imageUrl, types, sizes}) => {
                         />
                     </svg>
                     <span>Добавить</span>
-                    <i>2</i>
-                </div>
+                    {addedCount && <i>{addedCount}</i>}
+                </Button>
             </div>
         </div>
     );

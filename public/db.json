@@ -29,7 +29,7 @@
         "KING size"
       ],
       "price": 219,
-      "category": 1,
+      "category": 0,
       "rating": 6
     },
     {
@@ -44,7 +44,7 @@
         "KING size"
       ],
       "price": 125,
-      "category": 1,
+      "category": 0,
       "rating": 8
     },
     {
@@ -75,7 +75,7 @@
         "KING size"
       ],
       "price": 199,
-      "category": 1,
+      "category": 0,
       "rating": 7
     },
     {
@@ -122,7 +122,7 @@
         "KING size"
       ],
       "price": 165,
-      "category": 1,
+      "category": 0,
       "rating": 10
     },
     {
@@ -134,10 +134,11 @@
         1
       ],
       "sizes": [
+        "medium",
         "KING size"
       ],
       "price": 325,
-      "category": 1,
+      "category": 0,
       "rating": 7
     },
     {
@@ -152,7 +153,7 @@
         "KING size"
       ],
       "price": 149,
-      "category": 2,
+      "category": 1,
       "rating": 8
     },
     {
@@ -168,7 +169,7 @@
         "KING size"
       ],
       "price": 209,
-      "category": 3,
+      "category": 2,
       "rating": 9
     },
     {
@@ -184,7 +185,7 @@
         "KING size"
       ],
       "price": 163,
-      "category": 3,
+      "category": 2,
       "rating": 8
     },
     {
@@ -200,7 +201,7 @@
         "KING size"
       ],
       "price": 184,
-      "category": 4,
+      "category": 3,
       "rating": 10
     },
     {
@@ -216,7 +217,24 @@
         "medium"
       ],
       "price": 145,
-      "category": 4,
+      "category": 3,
+      "rating": 8
+    },
+    {
+      "id": 14,
+      "imageUrl": "https://mcdonalds-a.akamaihd.net/product/cef1651064034cadb19739f3eb0099f2/android/l/main.png",
+      "name": "Чикен Наггетс",
+      "types": [
+        0,
+        1
+      ],
+      "sizes": [
+        "mini",
+        "medium",
+        "KING size"
+      ],
+      "price": 49,
+      "category": 1,
       "rating": 8
     }
   ]

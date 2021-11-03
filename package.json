@@ -28,6 +28,7 @@
     "json-server": "json-server",
     "server": "npx json-server --watch public/db.json --port=3001"
   },
+  "proxy": "http://localhost:3001",
   "eslintConfig": {
     "extends": [
       "react-app",

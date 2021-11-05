@@ -3,19 +3,25 @@ const initialState = {
     totalPrice: 0,
     totalCount: 0,
 }
+const getTotalPrice = (arr) => arr.reduce((sum, obj) => obj.price + sum, 0);
 
 
 const cartReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'ADD_BURGER_CART': {
+            const currentBurgerItems = !state.items[action.payload.id]
+                ? [action.payload]
+                : [...state.items[action.payload.id].items, action.payload]
             const newItems = {
                 ...state.items,
-                [action.payload.id]: !state.items[action.payload.id]
-                    ? [action.payload]
-                    : [...state.items[action.payload.id], action.payload]
+                [action.payload.id]: {
+                    items: currentBurgerItems,
+                    totalPrice: getTotalPrice(currentBurgerItems),
+                },
             }
-            const allBurgers = [].concat.apply([], Object.values(newItems)) // из newItems вытаскиваем все бургеры
-            const totalPrice = allBurgers.reduce((sum, obj) => obj.price + sum, 0) // пробегаемся по всем бургерам и вытаскиваем цены и суммируем их
+            const items = Object.values(newItems).map(obj => obj.items)
+            const allBurgers = [].concat.apply([], items)
+            const totalPrice = getTotalPrice(allBurgers)
             return {
                 ...state,
                 items: newItems,

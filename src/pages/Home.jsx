@@ -34,7 +34,7 @@ const Home = () => {
     const burgerElements = items.map((obj) =>
         <BurgerBlock key={obj.id}
                      onClickAddBurger={handleAddBurgerToCart}
-                     addedCount={cartItems[obj.id] && cartItems[obj.id].length}
+                     addedCount={cartItems[obj.id] && cartItems[obj.id].items.length}
                      {...obj}
         />)
 

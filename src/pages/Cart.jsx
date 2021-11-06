@@ -76,6 +76,7 @@ const Cart = () => {
                                                              id={obj.id}
                                                              key={obj.id}
                                                              type={obj.type}
+                                                             imageUrl={obj.imageUrl}
                                                              size={obj.size}
                                                              totalCount={items[obj.id].items.length}
                                                              totalPrice={items[obj.id].totalPrice}

@@ -2,7 +2,7 @@ import React from 'react';
 import {Button} from "../index";
 
 
-const CartItem = ({id, name, type, size, totalCount, totalPrice, onRemoveItem, onMinus, onPlus}) => {
+const CartItem = ({id, name, type, size, totalCount, totalPrice, onRemoveItem, onMinus, onPlus, imageUrl}) => {
     const handleRemoveClick = () => {
         onRemoveItem(id)
     }
@@ -19,7 +19,7 @@ const CartItem = ({id, name, type, size, totalCount, totalPrice, onRemoveItem, o
             <div className="cart__item-img">
                 <img
                     className="pizza-block__image"
-                    src="https://mcdonalds-a.akamaihd.net/product/6df2af5836c045f797fc46079fe85fad/android/l/main.png"
+                    src={imageUrl}
                     alt="Pizza"
                 />
             </div>

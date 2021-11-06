@@ -1,7 +1,7 @@
 import React from 'react';
-import {CartItem} from "../components";
+import {Button, CartItem} from "../components";
 import {useDispatch, useSelector} from "react-redux";
-import {clearCart} from "../store/actions/cart";
+import {clearCart, minusCartItem, plusCartItem, removeCartItem} from "../store/actions/cart";
 import {Link} from "react-router-dom";
 
 
@@ -12,11 +12,23 @@ const Cart = () => {
     const addedBurgers = Object.keys(items).map((key) => {
         return items[key].items[0]
     })
-
     const onClearCart = () => {
         if (window.confirm('Очистить корзину?')) {
             dispatch(clearCart())
         }
+    }
+    const onRemoveItem = (id) => {
+        if (window.confirm('Удалить из корзины?'))
+            dispatch(removeCartItem(id))
+    }
+    const onPlusItem = (id) => {
+        dispatch(plusCartItem(id))
+    }
+    const onMinusItem = (id) => {
+        dispatch(minusCartItem(id))
+    }
+    const onClickOrder = () => {
+        console.log('Заказ', items)
     }
 
     return (
@@ -61,11 +73,15 @@ const Cart = () => {
                     <div className="content__items">
                         {/*CartItem*/}
                         {addedBurgers.map((obj) => <CartItem name={obj.name}
+                                                             id={obj.id}
                                                              key={obj.id}
                                                              type={obj.type}
                                                              size={obj.size}
                                                              totalCount={items[obj.id].items.length}
                                                              totalPrice={items[obj.id].totalPrice}
+                                                             onRemoveItem={onRemoveItem}
+                                                             onMinus={onMinusItem}
+                                                             onPlus={onPlusItem}
                         />)}
                     </div>
                     <div className="cart__bottom">
@@ -74,7 +90,7 @@ const Cart = () => {
                             <span> Сумма заказа: <b>{totalPrice} ₽</b> </span>
                         </div>
                         <div className="cart__bottom-buttons">
-                            <a href="/" className="button button--outline button--add go-back-btn">
+                            <Link to="/" className="button button--outline button--add go-back-btn">
                                 <svg width="8" height="14" viewBox="0 0 8 14" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
                                     <path d="M7 13L1 6.93015L6.86175 1" stroke="#D3D3D3" strokeWidth="1.5"
@@ -82,15 +98,15 @@ const Cart = () => {
                                 </svg>
 
                                 <span>Вернуться назад</span>
-                            </a>
-                            <div className="button pay-btn">
-                                <span>Оплатить сейчас</span>
-                            </div>
+                            </Link>
+                            <Button onClick={onClickOrder} className="pay-btn">
+                                <span>Оплатить</span>
+                            </Button>
                         </div>
                     </div>
                 </div>
                 : <div className="cart cart--empty">
-                    <h2>Корзина пуста <icon>😕</icon></h2>
+                    <h2>Корзина пуста <i>😕</i></h2>
                     <p>
                         Ваша корзина пуста. <br/>
                         Для заказа вернитесь на главную страницу.
